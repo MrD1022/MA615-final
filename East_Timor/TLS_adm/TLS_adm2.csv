@@ -1,0 +1,63 @@
+"OBJECTID","ID_0","ISO","NAME_0","ID_1","NAME_1","ID_2","NAME_2","TYPE_2","ENGTYPE_2","NL_NAME_2","VARNAME_2"
+1,229,"TLS","Timor-Leste",1,"Aileu",1,"Aileu","Subdistrito","Subdistrict",NA,NA
+2,229,"TLS","Timor-Leste",1,"Aileu",2,"Lau Lara","Subdistrito","Subdistrict",NA,"Laulara"
+3,229,"TLS","Timor-Leste",1,"Aileu",3,"Lequidoe","Subdistrito","Subdistrict",NA,"Liquidoe"
+4,229,"TLS","Timor-Leste",1,"Aileu",4,"Remexio","Subdistrito","Subdistrict",NA,NA
+5,229,"TLS","Timor-Leste",2,"Ainaro",5,"Ainaro","Subdistrito","Subdistrict",NA,NA
+6,229,"TLS","Timor-Leste",2,"Ainaro",6,"Hato Builico","Subdistrito","Subdistrict",NA,NA
+7,229,"TLS","Timor-Leste",2,"Ainaro",7,"Hato Hudo","Subdistrito","Subdistrict",NA,"Hato Udo"
+8,229,"TLS","Timor-Leste",2,"Ainaro",8,"Maubisse","Subdistrito","Subdistrict",NA,NA
+9,229,"TLS","Timor-Leste",3,"Ambeno",9,"Nitibe","Subdistrito","Subdistrict",NA,NA
+10,229,"TLS","Timor-Leste",3,"Ambeno",10,"Oe Silo","Subdistrito","Subdistrict",NA,"Oesilo"
+11,229,"TLS","Timor-Leste",3,"Ambeno",11,"Pante Macassar","Subdistrito","Subdistrict",NA,"Pante Makasar B"
+12,229,"TLS","Timor-Leste",3,"Ambeno",12,"Passabe","Subdistrito","Subdistrict",NA,NA
+13,229,"TLS","Timor-Leste",4,"Baucau",13,"Baguia","Subdistrito","Subdistrict",NA,NA
+14,229,"TLS","Timor-Leste",4,"Baucau",14,"Baucau","Subdistrito","Subdistrict",NA,NA
+15,229,"TLS","Timor-Leste",4,"Baucau",15,"Laga","Subdistrito","Subdistrict",NA,NA
+16,229,"TLS","Timor-Leste",4,"Baucau",16,"Quelicai","Subdistrito","Subdistrict",NA,NA
+17,229,"TLS","Timor-Leste",4,"Baucau",17,"Vemasse","Subdistrito","Subdistrict",NA,NA
+18,229,"TLS","Timor-Leste",4,"Baucau",18,"Venilale","Subdistrito","Subdistrict",NA,NA
+19,229,"TLS","Timor-Leste",5,"Bobonaro",19,"Atabai","Subdistrito","Subdistrict",NA,"Atabae"
+20,229,"TLS","Timor-Leste",5,"Bobonaro",20,"Balibó","Subdistrito","Subdistrict",NA,NA
+21,229,"TLS","Timor-Leste",5,"Bobonaro",21,"Bobonaro","Subdistrito","Subdistrict",NA,NA
+22,229,"TLS","Timor-Leste",5,"Bobonaro",22,"Cailaco","Subdistrito","Subdistrict",NA,NA
+23,229,"TLS","Timor-Leste",5,"Bobonaro",23,"Lolotoi","Subdistrito","Subdistrict",NA,"Lebos"
+24,229,"TLS","Timor-Leste",5,"Bobonaro",24,"Maliana","Subdistrito","Subdistrict",NA,NA
+25,229,"TLS","Timor-Leste",6,"Covalima",25,"Fatu Fulic","Subdistrito","Subdistrict",NA,"Fato Lulik"
+26,229,"TLS","Timor-Leste",6,"Covalima",26,"Fatu Mean","Subdistrito","Subdistrict",NA,"Fatumean"
+27,229,"TLS","Timor-Leste",6,"Covalima",27,"Fohorem","Subdistrito","Subdistrict",NA,"Forohem"
+28,229,"TLS","Timor-Leste",6,"Covalima",28,"Mape","Subdistrito","Subdistrict",NA,"Zumalai"
+29,229,"TLS","Timor-Leste",6,"Covalima",29,"Suai Kota","Subdistrito","Subdistrict",NA,"Maukatar"
+30,229,"TLS","Timor-Leste",6,"Covalima",30,"Tilomar","Subdistrito","Subdistrict",NA,NA
+31,229,"TLS","Timor-Leste",7,"Dili",31,"Atauro","Subdistrito","Subdistrict",NA,NA
+32,229,"TLS","Timor-Leste",7,"Dili",32,"Dili Barat","Subdistrito","Subdistrict",NA,"Dom Aleixo"
+33,229,"TLS","Timor-Leste",7,"Dili",33,"Dili Timur","Subdistrito","Subdistrict",NA,"Vera Cruz"
+34,229,"TLS","Timor-Leste",7,"Dili",34,"Metinaro","Subdistrito","Subdistrict",NA,NA
+35,229,"TLS","Timor-Leste",8,"Ermera",35,"Atsabe","Subdistrito","Subdistrict",NA,NA
+36,229,"TLS","Timor-Leste",8,"Ermera",36,"Ermera","Subdistrito","Subdistrict",NA,"Ermera Kota"
+37,229,"TLS","Timor-Leste",8,"Ermera",37,"Hatólia","Subdistrito","Subdistrict",NA,NA
+38,229,"TLS","Timor-Leste",8,"Ermera",38,"Letefoho","Subdistrito","Subdistrict",NA,"Lete Foho"
+39,229,"TLS","Timor-Leste",8,"Ermera",39,"Railaco","Subdistrito","Subdistrict",NA,NA
+40,229,"TLS","Timor-Leste",9,"Lautém",40,"Iliomar","Subdistrito","Subdistrict",NA,NA
+41,229,"TLS","Timor-Leste",9,"Lautém",41,"Lautém","Subdistrito","Subdistrict",NA,"Moro"
+42,229,"TLS","Timor-Leste",9,"Lautém",42,"Los Palos","Subdistrito","Subdistrict",NA,"Lospalos"
+43,229,"TLS","Timor-Leste",9,"Lautém",43,"Luro","Subdistrito","Subdistrict",NA,NA
+44,229,"TLS","Timor-Leste",9,"Lautém",44,"Tutuala","Subdistrito","Subdistrict",NA,NA
+45,229,"TLS","Timor-Leste",10,"Liquiçá",45,"Bazar Tete","Subdistrito","Subdistrict",NA,"Bazartete"
+46,229,"TLS","Timor-Leste",10,"Liquiçá",46,"Liquiçá","Subdistrito","Subdistrict",NA,NA
+47,229,"TLS","Timor-Leste",10,"Liquiçá",47,"Maubara","Subdistrito","Subdistrict",NA,NA
+48,229,"TLS","Timor-Leste",11,"Manatuto",48,"Barique","Subdistrito","Subdistrict",NA,NA
+49,229,"TLS","Timor-Leste",11,"Manatuto",49,"Laclo","Subdistrito","Subdistrict",NA,NA
+50,229,"TLS","Timor-Leste",11,"Manatuto",50,"Laclubar","Subdistrito","Subdistrict",NA,NA
+51,229,"TLS","Timor-Leste",11,"Manatuto",51,"Laleia","Subdistrito","Subdistrict",NA,NA
+52,229,"TLS","Timor-Leste",11,"Manatuto",52,"Manatuto","Subdistrito","Subdistrict",NA,NA
+53,229,"TLS","Timor-Leste",11,"Manatuto",53,"Soibada","Subdistrito","Subdistrict",NA,"Laclubar"
+54,229,"TLS","Timor-Leste",12,"Manufahi",54,"Alas","Subdistrito","Subdistrict",NA,NA
+55,229,"TLS","Timor-Leste",12,"Manufahi",55,"Fato Berliu","Subdistrito","Subdistrict",NA,"Fatuberliu"
+56,229,"TLS","Timor-Leste",12,"Manufahi",56,"Same","Subdistrito","Subdistrict",NA,NA
+57,229,"TLS","Timor-Leste",12,"Manufahi",57,"Turiscai","Subdistrito","Subdistrict",NA,NA
+58,229,"TLS","Timor-Leste",13,"Viqueque",58,"Lacluta","Subdistrito","Subdistrict",NA,NA
+59,229,"TLS","Timor-Leste",13,"Viqueque",59,"Ossu","Subdistrito","Subdistrict",NA,NA
+60,229,"TLS","Timor-Leste",13,"Viqueque",60,"Uato Carbau","Subdistrito","Subdistrict",NA,"Uatu Carbau"
+61,229,"TLS","Timor-Leste",13,"Viqueque",61,"Uatolari","Subdistrito","Subdistrict",NA,"Uatu Lari"
+62,229,"TLS","Timor-Leste",13,"Viqueque",62,"Viqueque","Subdistrito","Subdistrict",NA,NA

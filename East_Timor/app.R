@@ -1,10 +1,12 @@
+## Please open via .Rproj
+
 library(shiny)
 library(shinydashboard)
 library(leaflet)
 library(htmlwidgets)
 library(sf)
 
-timor_leste <- st_read("TLS_adm.zip")
+
 ##mainPanel(tabsetPanel())
 #location <- read.csv("https://risk.spc.int/geoserver/ows?service=WFS&version=1.0.0&request=GetFeature&typename=geonode%3Atl_bldexp_aggregates&outputFormat=csv&srs=EPSG%3A4326")
 sidebar <- dashboardSidebar(
@@ -28,6 +30,7 @@ sidebar <- dashboardSidebar(
 )
 
 body <- dashboardBody(
+  # Top Page
   tabItems(
     tabItem(tabName = "top",
             tags$div(
@@ -35,12 +38,12 @@ body <- dashboardBody(
             height: 400px; background-size: cover;",
               h1("top", align = "center", color = "grey90")
             )),
-    # tabItem: Location
+    # General Description: Location
     tabItem(tabName = "map", 
             fluidRow(
               tabBox(title = "Maps", id = "tabloc", height = "300px", width = 12, 
                      tabPanel("World Location", leafletOutput("WorldLoc", height = "300px")),
-                     tabPanel("Island", "Island Map")
+                     tabPanel("Island (Slow)", leafletOutput("Island", height = "300px"))
               )
             ),
             fluidRow(
@@ -146,7 +149,18 @@ server <- function(input, output) {
       addProviderTiles(providers$CartoDB.Positron) %>%
       setView(lng = 125.727539, lat = -8.874217, zoom = 4)  # 以东帝汶为中心的地图
   })
-  
+  tls_nation <- st_read("TLS_adm0.shp")
+  tls_provin <- st_read("TLS_adm1.shp")
+  tls_adm2 <- st_read("TLS_adm2.shp")
+  tls_adm3 <- st_read("TLS_adm3.shp")
+  output$Island <- renderLeaflet({
+    leaflet() %>%
+      addProviderTiles(providers$CartoDB.Positron) %>%
+      addPolygons(data = tls_nation, fillColor = "blue", weight = 1, smoothFactor = 0.5, opacity = 0.8, fillOpacity = 0) %>%
+      addPolygons(data = tls_provin, fillColor = "red", weight = 1, smoothFactor = 0.5, opacity = 0.8, fillOpacity = 0) %>%
+      addPolygons(data = tls_adm2, fillColor = "yellow", weight = 1, smoothFactor = 0.5, opacity = 0.8, fillOpacity = 0.1) %>%
+      addPolygons(data = tls_adm3, fillColor = "green", weight = 1, smoothFactor = 0.5, opacity = 0.8, fillOpacity = 0)
+  })
   # output$progressBox <- renderInfoBox({
   #   infoBox(
   #     "Progress", paste0(25 + input$count, "%"), icon = icon("list"),
