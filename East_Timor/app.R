@@ -225,7 +225,7 @@ server <- function(input, output) {
   # })
   output$tlsdemoplot <- renderPlot({
     ggplot(demopt(), aes(x = TIME_PERIOD.Time.period, y = OBS_VALUE.Observation.Value)) +
-      geom_line(color = "blue", size = 4) +
+      geom_line(color = "blue", size = 2) +
       labs( x = "Time Period", y = input$indica,
             caption = "Data Source: UNICEF") +
       theme(axis.text.x = element_text(size = 5),
