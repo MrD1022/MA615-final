@@ -116,7 +116,6 @@ body <- dashboardBody(
     tabItem(tabName = "comparison",
             fluidRow(
               box(title = "Statistics", solidHeader = TRUE, width = 5,
-                  collapsible = TRUE,
                   tableOutput("testab")),
               box(title = "Plot", width = 7,  
                   plotOutput("complot", height = 300))
@@ -138,15 +137,36 @@ body <- dashboardBody(
               )
             ),
     # (ing) SWOT
-    tabItem(tabName = "swot"),
-    tabItem(tabName = "stg",  h3("Strength"),
-            fluidRow(
-              # A static infoBox
-              infoBox("New Orders", 10 * 2, icon = icon("credit-card")),
-              # Dynamic infoBoxes
-              infoBoxOutput("progressBox"),
-              infoBoxOutput("approvalBox")
-            )),
+    tabItem(tabName = "swot",
+            fluidRow(box(width = 12, title = "Strength", collapsible = TRUE, background = "maroon", style = "border: 2px solid maroon;",
+                         p("The agriculture sector employs a significant portion of East Timor's active population. 
+                         As of 2009, about 67,000 households were involved in coffee growing, 
+                         with coffee being one of the country's largest exports, generating approximately $10 million annually. 
+                         East Timor is also a notable producer of cinnamon and cocoa, ranking 40th in coffee, 6th in cinnamon, and 50th in cocoa production worldwide."),
+                          br(),
+                         p("East Timor possesses considerable natural wealth, particularly in oil and natural gas. The Timor-Leste Petroleum Fund, established in 2005, 
+                           was valued at US$8.7 billion by 2011. This fund is a significant source of income for the government, supporting a large portion of its annual budget. 
+                           The country is labeled by the International Monetary Fund as the 'most oil-dependent economy in the world,' 
+                           highlighting the importance of this sector to its overall economic health."),
+                         br(),
+                         p("Timor-Leste is well positioned for community-based ecotourism, 
+                           which has been written into the nation’s tourism strategic plan. 
+                           The Nino Konis National Park (situated in the eastern part of the country) 
+                           is a well protected area and considered as some of the last surviving zones of 
+                           tropical lowland rainforest in the world with rich coastal environment. 
+                           The national park accommodates bird-watching, diving, trekking and pre-historic archeological sites."))),
+            fluidRow(box(width = 12, title = "Weakness", collapsible = TRUE, background = "aqua",
+                         p("Timor-Leste has been moving forward with the regeneration of its economy and rebuilding key infrastructure, including telecommunications networks, that were destroyed during the years of civil unrest; fixed-line and fixed broadband penetration in Timor-Leste remains extremely low, mainly due to the limited fixed-line infrastructure and the proliferation of mobile connectivity; in an effort to boost e-government services; the number of subscribers through to 2026 is expected to develop steadily, though from a low base."),
+                         br(),
+                         p("Even before the pandemic, there were urgent human capital challenges; some 47% of children are stunted, for example, and many students had poor learning outcomes due to low levels of education service delivery. These challenges were compounded by the COVID-19 pandemic which disrupted education services, leading to school closures and learning losses affecting 45% of school children."),
+                         br(),
+                         p("While Timor-Leste has succeeded in saving the proceeds of its natural resource endowment, key remaining challenges include how to increase the productivity and effectiveness of government spending, and how to ensure the environment is preserved as an important economic and social resource for future generations."))),
+            fluidRow(box(width = 12, title = "Opportunities", collapsible = TRUE, background = "teal",
+                     p("East Timor is part of the Timor Leste–Indonesia–Australia Growth Triangle (TIA-GT). The initiative aims to support economic, social, and cultural development primarily by attracting investment, developing manufacturing industries, enhancing human capital, and overall building a stronger cooperative relationship between the three countries involved. The initiative also aimed to accelerate the accession of Timor-Leste into the Association of Southeast Asian Nations (ASEAN) and to fulfill goals set by Timor-Leste's Strategic Development Plan, such as increasing the nation's economic prosperity and stability."))),
+            fluidRow(box(width = 12, title = "Threats", collapsible = TRUE, background = "olive",
+                         p('“The first half of 2021 brought devastating floods and an outbreak of COVID-19 – which, until recently, the country had been so successful in suppressing. These twin disasters threaten to set back hard-won gains in poverty reduction and economic stability,” said Bernard Harborne, Country Representative for Timor-Leste. “As a long-term partner, the World Bank stands with the people of Timor-Leste. We are ready to provide short-term support and develop long-term solutions to protect and invest in people during and after the pandemic. This report provides a useful snapshot of the current economic situation and key insights into building a stronger health system"')))
+            ),
+    
     tabItem(tabName = "ref", h3("Citations"),
             a("Timor-Leste (East Timor): Overview. University of Illinois LibGuides", 
               href = "https://guides.library.illinois.edu/timor-leste", target = "_blank"),
@@ -156,16 +176,29 @@ body <- dashboardBody(
             a("East Timor | History, Independence, Flag, & Facts. Britannica", href = "https://www.britannica.com/place/East-Timor", target = "_blank"),
             br(),
             a("Timor-Leste - The World Factbook. Central Intelligence Agency", href = "https://www.cia.gov/the-world-factbook/countries/timor-leste/", target = "_blank"),
-            
+            br(),
+            a("East Timor. Wikitravel", href = "https://wikitravel.org/en/East_Timor", target = "_blank"),
+            br(),
+            a("Economy of East Timor. Wikipedia", href = "https://en.wikipedia.org/wiki/Economy_of_East_Timor", target = "_blank"),
+            br(),
+            a("Timor-Leste Economy Grapples with Dual Impacts of Pandemic and Cyclone Seroja. World Bank",
+              href = "https://www.worldbank.org/en/news/press-release/2021/06/10/timor-leste-economy-grapples-with-dual-impacts-of-pandemic-and-cyclone-seroja",
+              target = "_blank"),
             
             br(),
-            h3("References"),
+            h3("Data & References"),
             br(),
             a("UNICEF Data Warehouse. UNICEF", href = "https://data.unicef.org/resources/data_explorer/unicef_f/?ag=UNICEF&df=GLOBAL_DATAFLOW&ver=1.0&dq=TLS..&startPeriod=1970&endPeriod=2023", target = "_blank"),
             br(),
             a("Spatial Data Download. DIVA-GIS", href = "https://www.diva-gis.org/gdata", target = "_blank"),
             br(),
-            a("World Development Indicators. DataBank", href = "https://databank.worldbank.org/home", target = "_blank")
+            a("World Development Indicators. DataBank", href = "https://databank.worldbank.org/home", target = "_blank"),
+            br(),
+            a("ChatGPT. OpenAI", href = "https://chat.openai.com/", target = "_blank"),
+            br(),
+            h3("Special Thanks"),
+            br(),
+            p("Yuchen Huang")
             )
 )
 )
