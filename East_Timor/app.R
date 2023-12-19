@@ -23,8 +23,7 @@ demo_tls[columns] <- lapply(demo_tls[columns],
 com_wdbk <- read_xlsx("wdbk.xlsx")
 colnames(com_wdbk) <- gsub("\\s*\\[.*?\\]\\s*", "", colnames(com_wdbk))
 com_wdbk <- com_wdbk |> 
-  filter(!is.na(`GDP per capita growth (annual %)`)) |>
-  filter()
+  filter(!is.na(`GDP per capita growth (annual %)`))
 
 
 ##mainPanel(tabsetPanel())
