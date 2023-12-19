@@ -8,6 +8,7 @@ library(sf)
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(readxl)
 
 # Data Cleaning
 demo_tls <- read.csv("70-23 long version.csv")
@@ -18,6 +19,12 @@ demo_tls <- demo_tls |>
   select(where(~ any(!is.na(.)))) 
 demo_tls[columns] <- lapply(demo_tls[columns], 
                             function(x) gsub(".*: ", "", x))
+
+com_wdbk <- read_xlsx("wdbk.xlsx")
+colnames(com_wdbk) <- gsub("\\s*\\[.*?\\]\\s*", "", colnames(com_wdbk))
+com_wdbk <- com_wdbk |> 
+  filter(!is.na(`GDP per capita growth (annual %)`)) |>
+  filter()
 
 
 ##mainPanel(tabsetPanel())
@@ -49,7 +56,10 @@ body <- dashboardBody(
             tags$div(
               style = "background-image: url('https://blog.gale.com/wp-content/uploads/2022/05/iStock-489482040.jpg');
             height: 400px; background-size: cover;",
-              h1("top", align = "center", color = "grey90")
+              h1("East Timor (Timor-Leste)", style = "position: relative; top: 60%; left: 50%; transform: translate(-50%, -50%); color: white;"),
+              h2("Mingrui Du, MSSP 2023", 
+                 style = "position: relative; top: 60%; left: 50%; transform: translate(-50%, -50%); color: white;"),
+              #h3("Mingrui Du, MSSP 2023", style = "")
             )),
     # (complete) General Description: Location
     tabItem(tabName = "map", 
@@ -89,7 +99,7 @@ body <- dashboardBody(
                            <br>Wildlife includes the cuscus (a species of marsupial), monkeys, deer, civet cats, snakes, and crocodiles."),
               style = "text-align: center; font-size: 18px;"
             )),
-    # (ing) Demographic
+    # (complete, can improve) Demographic
     tabItem(tabName = "demo",
             fluidRow(h1("Key Demographics"),
               box("Indicator Selection", width = 3,
@@ -100,49 +110,48 @@ body <- dashboardBody(
                                                                    "Population annual growth rate", "Total population", "Population under age 18",
                                                                    "Population under age 5", "Share of urban population")),
                   radioButtons("gender", "Gender: ", choices = c("Total", "Male", "Female"))),
-              box(plotOutput("tlsdemoplot"),
+              box(uiOutput("tlsdemoui"),
+                  #plotOutput("tlsdemoplot"),
                   width = 9, 
                   )
             )),
     
-    # Regional Comparison
-    tabItem(tabName = "comparison", h1("Some graphs"),
-            box(
-              title = "Histogram", solidHeader = TRUE,
-              collapsible = TRUE,
-              plotOutput("plot3", height = 250)),
-            box(
-              title = "Inputs", solidHeader = TRUE,
-              "Box content here", br(), "More box content",
-              sliderInput("slider", "Slider input:", 1, 100, 50),
-              textInput("text", "Text input:")),
+    # (ing) Regional Comparison
+    tabItem(tabName = "comparison",
             fluidRow(
-              tabBox(
-                title = "First tabBox",
-                # The id lets us use input$tabset1 on the server to find the current tab
-                id = "tabset1", height = "250px",
-                tabPanel("Tab1", "First tab content"),
-                tabPanel("Tab2", "Tab content 2")
+              box(title = "Statistics", solidHeader = TRUE, width = 5,
+                  collapsible = TRUE,
+                  tableOutput("testab")),
+              box(title = "Plot", width = 7,  
+                  plotOutput("complot", height = 300))
               ),
-              tabBox(
-                side = "right", height = "250px",
-                selected = "Tab3",
-                tabPanel("Tab1", "Tab content 1"),
-                tabPanel("Tab2", "Tab content 2"),
-                tabPanel("Tab3", "Note that when side=right, the tab order is reversed.")
-              )
-            ),
             fluidRow(
-              tabBox(
-                # Title can include an icon
-                title = tagList(shiny::icon("gear"), "tabBox status"),
-                tabPanel("Tab1",
-                         "Currently selected tab from first box:",
-                         verbatimTextOutput("tabset1Selected")
-                ),
-                tabPanel("Tab2", "Tab content 2")
+              column(6, 
+                     sliderInput("slider", "Year: ", 2008, 2022, 15, sep = "")
+              ),
+              column(6, 
+                     selectInput("comindi", "Indicators: ", choices = c(
+                       "GDP per capita growth (annual %)", "GDP per capita (current US$)", 
+                       "GDP growth (annual %)", "GDP (current US$)",
+                       "Population density (people per sq. km of land area)", 
+                       "Access to electricity (% of population)",
+                       "Suicide mortality rate (per 100,000 population)", 
+                       "Agricultural raw materials exports (% of merchandise exports)",
+                       "Fuel imports (% of merchandise imports)", 
+                       "International tourism, expenditures (% of total imports)"
+                     ))
               )
-            )),
+            )
+            # fluidRow(column(6, sliderInput("slider", "Year: ", 2008, 2022, 15, sep = ""))),
+            #          column(6, selectInput("comindi", "Indicators: ", choices = c("GDP per capita growth (annual %)", "GDP per capita (current US$)", 
+            #                                                             "GDP growth (annual %)", "GDP (current US$)",
+            #                                                             "Population density (people per sq. km of land area)", 
+            #                                                             "Access to electricity (% of population)",
+            #                                                             "Suicide mortality rate (per 100,000 population)", 
+            #                                                             "Agricultural raw materials exports (% of merchandise exports)",
+            #                                                             "Fuel imports (% of merchandise imports)", 
+            #                                                             "International tourism, expenditures (% of total imports)")))
+            ),
     # tabItem 4
     tabItem(tabName = "swot"),
     tabItem(tabName = "stg",  h3("Strength"),
@@ -172,7 +181,9 @@ body <- dashboardBody(
             br(),
             a("UNICEF Data Warehouse. UNICEF", href = "https://data.unicef.org/resources/data_explorer/unicef_f/?ag=UNICEF&df=GLOBAL_DATAFLOW&ver=1.0&dq=TLS..&startPeriod=1970&endPeriod=2023", target = "_blank"),
             br(),
-            a("Spatial Data Download. DIVA-GIS", href = "https://www.diva-gis.org/gdata", target = "_blank")
+            a("Spatial Data Download. DIVA-GIS", href = "https://www.diva-gis.org/gdata", target = "_blank"),
+            br(),
+            a("World Development Indicators. DataBank", href = "https://databank.worldbank.org/home", target = "_blank")
             )
 )
 )
@@ -190,7 +201,6 @@ ui <- dashboardPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  #input$searchText <- textInput("id", "Search")
   # Locations
   output$WorldLoc <- renderLeaflet({
     leaflet() %>% 
@@ -213,25 +223,47 @@ server <- function(input, output) {
   demopt <- reactive({
     filter(demo_tls, SEX.Sex == input$gender, INDICATOR.Indicator == input$indica)
   })
-  # output$tlsdemoplot <- renderUI({
-  #   if(nrow(demopt()) == 0) {
-  #     tagList(
-  #       h3("Data Unavailable"),
-  #       p("No data available for the selected gender.")
-  #     )
-  #   } else {
-  #     plotOutput("demoplot")
-  #   }
-  # })
+  output$tlsdemoui <- renderUI({
+    if(nrow(demopt()) == 0) {
+      h3("Data Unavailable")
+    } else {
+      plotOutput("tlsdemoplot")
+    }
+  })
   output$tlsdemoplot <- renderPlot({
-    ggplot(demopt(), aes(x = TIME_PERIOD.Time.period, y = OBS_VALUE.Observation.Value)) +
+    data <- demopt()
+    unit <- unique(data$UNIT_MULTIPLIER.Unit.multiplier)
+    ggplot(data, aes(x = TIME_PERIOD.Time.period, y = OBS_VALUE.Observation.Value)) +
       geom_line(color = "blue", size = 2) +
       labs( x = "Time Period", y = input$indica,
-            caption = "Data Source: UNICEF") +
+            caption = paste0("Data Source: UNICEF; Unit multiplier: ", unit)) +
       theme(axis.text.x = element_text(size = 5),
             axis.text.y = element_text(size = 5)) +
       theme_minimal()
   })
+  # Comparison
+  compari <- reactive({
+    filt <- filter(com_wdbk, Time == input$slider)
+    sele <- select(filt, Time, `Country Name`, all_of(input$comindi))
+    sele
+  })
+  output$testab <- renderTable({
+    data <- compari()
+    data[[3]] <- format(data[[3]], nsmall = 2)
+    data
+    })
+  output$complot <- renderPlot({
+    data <- compari()
+    names(data)[3] <- "Value"
+    ggplot(data, aes_string(x = "`Country Name`", y = "Value")) +
+      geom_bar(color = "skyblue1", size = 2) +
+      labs( x = "", y = input$comindi,
+            caption = "Data Source: World Bank") +
+      theme(axis.text.x = element_text(size = 5),
+            axis.text.y = element_text(size = 5)) +
+      theme_minimal()
+  })
+  
   # output$progressBox <- renderInfoBox({
   #   infoBox(
   #     "Progress", paste0(25 + input$count, "%"), icon = icon("list"),
