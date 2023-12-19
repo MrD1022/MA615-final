@@ -38,11 +38,7 @@ sidebar <- dashboardSidebar(
              menuSubItem("Brief", tabName = "brief")),
     menuItem("Key Demographics", tabName = "demo", icon = icon("person")),
     menuItem("Regional Comparison", tabName = "comparison", icon = icon("signal")),
-    menuItem("SWOT", tabName = "swot", icon = icon("play"), startExpanded = FALSE,
-             menuSubItem("Strength", tabName = "stg"),
-             menuSubItem("Weakness", tabName = "wkns"),
-             menuSubItem("Opportunities", tabName = "oppr"),
-             menuSubItem("Threats", tabName = "thrts")),
+    menuItem("SWOT", tabName = "swot", icon = icon("play"), startExpanded = FALSE),
     menuItem("Citations & References", tabName = "ref", icon = icon("circle-info"))
   )
   #sidebarSearchForm(textId = "searchText", buttonId = "searchButton",
@@ -116,7 +112,7 @@ body <- dashboardBody(
                   )
             )),
     
-    # (ing) Regional Comparison
+    # (complete, can improve) Regional Comparison
     tabItem(tabName = "comparison",
             fluidRow(
               box(title = "Statistics", solidHeader = TRUE, width = 5,
@@ -138,21 +134,10 @@ body <- dashboardBody(
                        "Suicide mortality rate (per 100,000 population)", 
                        "Agricultural raw materials exports (% of merchandise exports)",
                        "Fuel imports (% of merchandise imports)", 
-                       "International tourism, expenditures (% of total imports)"
-                     ))
+                       "International tourism, expenditures (% of total imports)")))
               )
-            )
-            # fluidRow(column(6, sliderInput("slider", "Year: ", 2008, 2022, 15, sep = ""))),
-            #          column(6, selectInput("comindi", "Indicators: ", choices = c("GDP per capita growth (annual %)", "GDP per capita (current US$)", 
-            #                                                             "GDP growth (annual %)", "GDP (current US$)",
-            #                                                             "Population density (people per sq. km of land area)", 
-            #                                                             "Access to electricity (% of population)",
-            #                                                             "Suicide mortality rate (per 100,000 population)", 
-            #                                                             "Agricultural raw materials exports (% of merchandise exports)",
-            #                                                             "Fuel imports (% of merchandise imports)", 
-            #                                                             "International tourism, expenditures (% of total imports)")))
             ),
-    # tabItem 4
+    # (ing) SWOT
     tabItem(tabName = "swot"),
     tabItem(tabName = "stg",  h3("Strength"),
             fluidRow(
@@ -162,9 +147,6 @@ body <- dashboardBody(
               infoBoxOutput("progressBox"),
               infoBoxOutput("approvalBox")
             )),
-    tabItem(tabName = "wkns", h3("Weakness")),
-    tabItem(tabName = "oppr", h3("Opportunities")),
-    tabItem(tabName = "thrts", h3("Threats")),
     tabItem(tabName = "ref", h3("Citations"),
             a("Timor-Leste (East Timor): Overview. University of Illinois LibGuides", 
               href = "https://guides.library.illinois.edu/timor-leste", target = "_blank"),
@@ -248,20 +230,21 @@ server <- function(input, output) {
     sele
   })
   output$testab <- renderTable({
-    data <- compari()
-    data[[3]] <- format(data[[3]], nsmall = 2)
-    data
+    compari()
     })
   output$complot <- renderPlot({
     data <- compari()
     names(data)[3] <- "Value"
     ggplot(data, aes_string(x = "`Country Name`", y = "Value")) +
-      geom_bar(color = "skyblue1", size = 2) +
-      labs( x = "", y = input$comindi,
-            caption = "Data Source: World Bank") +
-      theme(axis.text.x = element_text(size = 5),
-            axis.text.y = element_text(size = 5)) +
-      theme_minimal()
+      geom_point(data = data %>% 
+                   mutate(Color = ifelse(`Country Name` == "Timor-Leste", "red", "skyblue1")), 
+                 aes(color = Color), size = 2) +
+      labs(x = "Country", y = "Value", caption = "Data Source: World Bank") +
+      theme(axis.text.x = element_text(size = 5, angle = 45, vjust = 1, hjust = 1),
+            axis.text.y = element_text(size = 5),
+            legend.position = "none") +
+      theme_minimal() +
+      scale_color_identity()
   })
   
   # output$progressBox <- renderInfoBox({
